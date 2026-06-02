@@ -22,19 +22,187 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:#f8f9ff;
 padding:20px;
+overflow:hidden;
+
+background:
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.45)
+),
+url("https://l.top4top.io/p_3805zxfdi1.jpg");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+.rain{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:1;
+}
+
+.heart{
+position:absolute;
+color:#ffb6c1;
+animation:fall linear infinite;
+user-select:none;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px) rotate(0deg);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
 }
 
 .card{
+position:relative;
+z-index:10;
 width:100%;
 max-width:850px;
-background:white;
+background:rgba(255,255,255,.93);
 border-radius:25px;
 padding:40px;
-box-shadow:0 20px 60px rgba(0,0,0,.08);
+box-shadow:0 20px 60px rgba(0,0,0,.15);
 }
 
+h1{
+text-align:center;
+color:#ff4f8b;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#777;
+margin-bottom:30px;
+}
+
+#typing{
+line-height:2;
+font-size:16px;
+color:#444;
+white-space:pre-wrap;
+min-height:280px;
+}
+
+.cursor{
+display:inline-block;
+animation:blink .8s infinite;
+}
+
+@keyframes blink{
+50%{
+opacity:0;
+}
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+font-weight:600;
+color:#ff4f8b;
+}
+
+</style>
+</head>
+<body>
+
+<div class="rain" id="rain"></div>
+
+<div class="card">
+
+<h1>💖 Untuk Ms. Wulan</h1>
+
+<div class="subtitle">
+Selamat Menempuh Perjalanan Baru
+</div>
+
+<div id="typing"></div>
+
+<div class="footer">
+Terima kasih atas semua kenangan indah 🌸
+</div>
+
+</div>
+
+<script>
+
+const text = `
+
+Selamat tinggal bukan berarti melupakan.
+
+Terima kasih Ms. Wulan atas ilmu, kesabaran,
+dan perhatian yang telah diberikan selama
+mengajar di SMK Pasundan 3 Cimahi.
+
+Mungkin hari ini menjadi akhir dari perjalanan
+sebagai guru di sekolah ini.
+
+Namun setiap pelajaran, nasihat, dan kebaikan
+yang pernah diberikan akan selalu hidup dalam
+ingatan para siswa.
+
+Semoga langkah baru yang ditempuh membawa
+kebahagiaan, kesehatan, kesuksesan, dan
+masa depan yang lebih indah.
+
+Terima kasih telah menjadi bagian dari
+cerita kami.
+
+🌸 Sampai bertemu kembali, Ms. Wulan.
+`;
+
+let i = 0;
+const target = document.getElementById("typing");
+
+function typeWriter(){
+if(i < text.length){
+target.innerHTML =
+text.substring(0,i+1) +
+'<span class="cursor">|</span>';
+i++;
+setTimeout(typeWriter,35);
+}
+}
+
+typeWriter();
+
+const rain = document.getElementById("rain");
+
+for(let i=0;i<50;i++){
+
+const heart = document.createElement("div");
+
+heart.className = "heart";
+heart.innerHTML = "❤";
+
+heart.style.left = Math.random()*100+"%";
+heart.style.fontSize = (10+Math.random()*25)+"px";
+heart.style.animationDuration = (4+Math.random()*6)+"s";
+heart.style.animationDelay = Math.random()*5+"s";
+
+rain.appendChild(heart);
+
+}
+
+</script>
+
+</body>
+</html>
 h1{
 text-align:center;
 color:#ff4f8b;
